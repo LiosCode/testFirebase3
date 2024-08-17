@@ -43,4 +43,23 @@ const Registerpage = () => {
                 email,
             ));
 
-            
+            setMessage("Registration successful pleaer check your email verification");
+
+            setFirstName("");
+            setLastName("");
+            setEmail("");
+            setPassword("");
+            setConfirmPassword("");
+        }   
+        catch (error) {
+            if (error instanceof Error) {    
+                setError(error.message);
+            }else{
+                setError("Unknown error");
+            }
+        }
+    };
+
+    return (
+        <div className="bg gardient-to-b from-gray-600 to-black justify-center items-center h-screen w-screen flex flex-col h-screen relative">
+           
