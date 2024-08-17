@@ -91,6 +91,18 @@ const Registerpage = () => {
                 </div>
                </div>
 
+               <div className="flex space-x-4">
+                <div className="w-1/2">
+                <label htmlFor="email" className="text-sm font-medium block mb-2 text-gray-300">
+                    First Name</label>
+                <input type="email"
+                id="email"
+                placeholder="email"
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)}
+                required className="border 2 outline-none sm:text-sm rounded-Lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white"/>
+                </div>
+               </div>
 
                <div className="flex space-x-4">
                 <div className="w-1/2">
