@@ -1,29 +1,37 @@
 "use client";
-import { useState, FormEvent } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, firestore } from "@/firebase/firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import Link from "next/link";
 
-import { auth } from "./app/firebase/firebase";
-
-const Loginpage = () => {
-    // const [firstName, setFirstName] = useState("");
-    // const [lastName, setLastName] = useState("");
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [confirmPassword, setConfirmPassword] = useState("");
+const Loginpage = () => { 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [error, setError] = useState<string | null>(null);
-    const [message, setMessage] = useState<string | null>(null);
     const router = useRouter();
 
-    const handleLogin = async (e: FormEvent) => {
-        e.preventDefault();
+    const handleLogin = async (e: React.FormEvent) => {
+        event.preventDefault();
         setError(null);
-        setMessage(null);
+        
+        try {
+            const userCredential = await signInWithEmailAndPassword(
+                auth, 
+                email, 
+                password
+            );
+            const user = userCredential.user;
 
-        if (password !== confirmPassword) {
-            setError("Passwords do not match");
-            return;
-
+            if (user.emailVerified) {
+                const regrestrationData = localStorage.getItem("registrationData");
+                const {
+                    firstName,
+                    lastName,                    
+                }= regristrationData ? JSON.parse(regrestrationData) : {};
         }
+
     };
 
     return (
